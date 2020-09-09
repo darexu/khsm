@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+ruby '2.7.0'
+
 gem 'bigdecimal', '1.4.2'
 
 gem 'rails', '~> 4.2.6'
