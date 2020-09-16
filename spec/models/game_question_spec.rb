@@ -10,13 +10,6 @@ RSpec.describe GameQuestion, type: :model do
   # она будет создана на фабрике заново для каждого блока it, где она вызывается
   let(:game_question) { FactoryGirl.create(:game_question, a: 2, b: 1, c: 4, d: 3) }
 
-  context 'validation check' do
-    it { should validate_presence_of :text}
-    it { should validate_presence_of :level}
-
-    it { should validate_inclusion_of(:level).in_range(0..14) }
-  end
-
   # группа тестов на игровое состояние объекта вопроса
   context 'game status' do
     # тест на правильную генерацию хэша с вариантами
@@ -30,6 +23,12 @@ RSpec.describe GameQuestion, type: :model do
     it 'correct .answer_correct?' do
       # именно под буквой b в тесте мы спрятали указатель на верный ответ
       expect(game_question.answer_correct?('b')).to be_truthy
+    end
+
+    # тест на наличие методов делегатов level и text
+    it 'correct .level & .text delegates' do
+      expect(game_question.text).to eq(game_question.question.text)
+      expect(game_question.level).to eq(game_question.question.level)
     end
   end
 
