@@ -52,4 +52,11 @@ RSpec.describe GameQuestion, type: :model do
       expect(ah.keys).to contain_exactly('a', 'b', 'c', 'd')
     end
   end
+
+  describe '#correct_answer_key' do
+    it 'should return letter of right answer' do
+      expect(game_question.answer_correct?('a')).to be_falsey
+      expect(game_question.answer_correct?('b')).to be_truthy
+    end
+  end
 end

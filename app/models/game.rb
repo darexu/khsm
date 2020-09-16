@@ -68,7 +68,7 @@ class Game < ActiveRecord::Base
   end
 
   # -1 для новой игры!
-  def current_levelprevious_level
+  def previous_level
     current_level - 1
   end
 
