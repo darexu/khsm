@@ -125,24 +125,26 @@ RSpec.describe Game, type: :model do
   end
 
   describe '#answer_current_question!' do
-    it 'should change game level' do
+    it 'correct answer' do
       q = game_w_questions.current_game_question
-      game_w_questions.answer_current_question!(q.correct_answer_key)
-      expect(game_w_questions.current_level).to eq(1)
+      expect(game_w_questions.answer_current_question!(q.correct_answer_key)).to be_truthy
     end
 
-    it 'should change game status to fail' do
-      game_w_questions.answer_current_question!('f')
-      expect(game_w_questions.status).to eq(:fail)
-      expect(game_w_questions.finished?).to be_truthy
+    it 'incorrect answer' do
+      expect(game_w_questions.answer_current_question!('f')).to be_falsey
     end
 
-    it 'should change game status to won after answering the last question' do
+    it 'correct answer on the last question' do
       game_w_questions.current_level = 14
       q = game_w_questions.current_game_question
-      game_w_questions.answer_current_question!(q.correct_answer_key)
-      expect(game_w_questions.status).to eq(:won)
-      expect(game_w_questions.finished?).to bew_truthy
+      expect(game_w_questions.answer_current_question!(q.correct_answer_key)).to be_truthy
+    end
+
+    it 'answer after time over' do
+      before { game_w_questions.created_at = 1.hour.ago }
+      q = game_w_questions.current_game_question
+      expect(game_w_questions.answer_current_question!(q.correct_answer_key)).to be_falsey
+      expect(game_w_questions.status).to eq(:timeout)
     end
   end
 end
