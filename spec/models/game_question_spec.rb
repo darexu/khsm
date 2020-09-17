@@ -55,8 +55,7 @@ RSpec.describe GameQuestion, type: :model do
 
   describe '#correct_answer_key' do
     it 'should return letter of right answer' do
-      expect(game_question.answer_correct?('a')).to be_falsey
-      expect(game_question.answer_correct?('b')).to be_truthy
+      expect(game_question.correct_answer_key).to eq('b')
     end
   end
 end
