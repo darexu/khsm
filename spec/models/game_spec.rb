@@ -129,13 +129,13 @@ RSpec.describe Game, type: :model do
       q = game_w_questions.current_game_question
       expect(game_w_questions.answer_current_question!(q.correct_answer_key)).to be_truthy
       expect(game_w_questions.status).to eq(:in_progress)
-      expect(game_w_questions.finished?).to be_falsey
+      expect(game_w_questions).to be_finished
     end
 
     it 'incorrect answer' do
       expect(game_w_questions.answer_current_question!('f')).to be_falsey
       expect(game_w_questions.status).to eq(:fail)
-      expect(game_w_questions.finished?).to be_falsey
+      expect(game_w_questions).to be_finished
     end
 
     it 'correct answer on the last question' do
@@ -143,15 +143,15 @@ RSpec.describe Game, type: :model do
       q = game_w_questions.current_game_question
       expect(game_w_questions.answer_current_question!(q.correct_answer_key)).to be_truthy
       expect(game_w_questions.status).to eq(:won)
-      expect(game_w_questions.finished?).to be_truthy
+      expect(game_w_questions).to be_finished
     end
 
     it 'answer after time over' do
-      before { game_w_questions.created_at = 1.hour.ago }
+      game_w_questions.created_at = 1.hour.ago
       q = game_w_questions.current_game_question
       expect(game_w_questions.answer_current_question!(q.correct_answer_key)).to be_falsey
       expect(game_w_questions.status).to eq(:timeout)
-      expect(game_w_questions.finished?).to be_truthy
+      expect(game_w_questions).to be_finished
     end
   end
 end

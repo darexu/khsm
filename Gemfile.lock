@@ -39,7 +39,6 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     arel (6.0.4)
     bcrypt (3.1.16)
-    bootstrap-sass (2.0.3.1)
     builder (3.2.4)
     byebug (11.1.3)
     capybara (3.33.0)
@@ -175,6 +174,9 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (13.0.1)
+    rb-fsevent (0.10.4)
+    rb-inotify (0.10.1)
+      ffi (~> 1.0)
     regexp_parser (1.7.1)
     remotipart (1.4.4)
     responders (2.4.1)
@@ -199,6 +201,9 @@ GEM
     rspec-support (3.9.3)
     russian (0.6.0)
       i18n (>= 0.5.0)
+    sass-listen (4.0.0)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
     sass-rails (6.0.0.beta3)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -241,7 +246,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass (~> 2.0.3.1)
   byebug
   capybara
   devise (~> 4.1.1)
@@ -256,6 +260,7 @@ DEPENDENCIES
   rails_admin
   rspec-rails (~> 3.4)
   russian
+  sass-listen
   shoulda-matchers
   sqlite3 (~> 1.3.13)
   twitter-bootstrap-rails
