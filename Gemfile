@@ -6,7 +6,7 @@ ruby '2.5.8'
 gem 'rails', '~> 4.2.6'
 
 # Удобная админка для управления любыми сущностями
-gem 'rails_admin'
+#gem 'rails_admin'
 
 gem 'devise', '~> 4.1.1'
 gem 'devise-i18n'

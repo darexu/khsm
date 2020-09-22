@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'users#index'
 
   # Путь для админки
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  #mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   # Пути для формы регистрации, входа и т.д.
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout'}
