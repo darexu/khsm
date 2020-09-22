@@ -113,7 +113,7 @@ RSpec.describe Game, type: :model do
     it 'should return number of current game question' do
       game_w_questions.current_level = 5
       q = game_w_questions.current_game_question
-      expect(game_w_questions.game_questions[4]).to eq(q)
+      expect(game_w_questions.game_questions[5]).to eq(q)
     end
   end
 

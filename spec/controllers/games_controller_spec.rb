@@ -55,9 +55,6 @@ RSpec.describe GamesController, type: :controller do
     it 'kick from #take_money' do
       put :take_money, id: game_w_questions.id
 
-      game = assigns(:game)
-
-      expect(game.finished?).to be_falsey
       expect(response.status).not_to eq(200) # статус не 200 ОК
       expect(response).to redirect_to(new_user_session_path) # devise должен отправить на логин
       expect(flash[:alert]).to be # во flash должен быть прописана ошибка
@@ -123,7 +120,7 @@ RSpec.describe GamesController, type: :controller do
 
       expect(game.finished?).to be_truthy
       expect(user.balance).to eq(game_w_questions.prize)
-      expect(response).to redirect_to(user_path(current_user))
+      expect(response).to redirect_to(user_path(game.user))
       expect(flash[:alert]).to be
     end
 
@@ -145,14 +142,6 @@ RSpec.describe GamesController, type: :controller do
       expect(response).to redirect_to(game_path(game))
     end
 
-    # тест на чужую игру
-    it "show someone else's game" do
-      get :show, id: game_w_questions.id + 1
-
-      expect(response.status).to eq(200) # должен быть ответ HTTP 200
-      expect(response).to render_template('show') # и отрендерить шаблон show
-    end
-
     # проверка, что пользовтеля посылают из чужой игры
     it '#show alien game' do
       # создаем новую игру, юзер не прописан, будет создан фабрикой новый
@@ -161,7 +150,7 @@ RSpec.describe GamesController, type: :controller do
       # пробуем зайти на эту игру текущий залогиненным user
       get :show, id: alien_game.id
 
-      expect(response.status).not_to eq(200) # статус не 200 ОК
+      expect(response.status).not_to eq(200)
       expect(response).to redirect_to(root_path)
       expect(flash[:alert]).to be # во flash должен быть прописана ошибка
     end
