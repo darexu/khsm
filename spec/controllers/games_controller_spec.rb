@@ -59,6 +59,7 @@ RSpec.describe GamesController, type: :controller do
       expect(response).to redirect_to(new_user_session_path) # devise должен отправить на логин
       expect(flash[:alert]).to be # во flash должен быть прописана ошибка
     end
+
     it 'kick from #help' do
       put :help, id: game_w_questions.id, help_type: :audience_help
 
