@@ -102,4 +102,19 @@ RSpec.describe GameQuestion, type: :model do
       expect(ff.size).to eq 2 # всего должно остаться 2 варианта
     end
   end
+
+  describe '#friend_call' do
+    it 'correct fifty_fifty' do
+      # сначала убедимся, в подсказках пока нет нужного ключа
+      expect(game_question.help_hash).not_to include(:friend_call)
+      # вызовем друга =)
+      game_question.add_friend_call
+
+      # проверим создание подсказки
+      expect(game_question.help_hash).to include(:friend_call)
+      fc = game_question.help_hash[:friend_call]
+
+      expect(fc).to be_a(String)
+    end
+  end
 end
