@@ -189,5 +189,16 @@ RSpec.describe GamesController, type: :controller do
       expect(response).to redirect_to(game_path(game_w_questions))
       expect(flash[:alert]).to be
     end
+
+    # проверка можно ли воспользоватся 50/50
+    it 'try to fifty fifty' do
+      game_w_questions.use_help(:fifty_fifty)
+      expect(response.status).to eq(200)
+      expect(game_w_questions.fifty_fifty_used?).to be_truthy
+
+      put :help, id: game_w_questions.id, help_type: :fifty_fifty
+      expect(response.status).to eq(302)
+      expect(response).to redirect_to(game_path(game_w_questions))
+    end
   end
 end
