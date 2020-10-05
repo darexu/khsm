@@ -15,7 +15,7 @@
         <% if help.key?(:audience_help) %>
           <p>Зрители считают: </p>
           <%# Выводим распределение голосов зрителей %>
-          <% help[:audience_help].sort.map do |key, value| %>
+          <% help[:audience_help].game-help-infosort.map do |key, value| %>
             <div class="progress">
               <div class="progress-bar progress-bar-danger" style="width: <%= value %>%;">
                 <%= key.upcase %>: <%= value %>%
