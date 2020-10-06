@@ -39,5 +39,18 @@ RSpec.describe 'users/show', type: :view do
     it "doesn't render change name and password link" do
       expect(rendered).not_to match 'Сменить имя и пароль'
     end
+
+    it 'render player name' do
+      expect(rendered).to match 'Юра'
+    end
+
+    it 'render game partial' do
+      assign(:games, [FactoryBot.build_stubbed(:game)])
+      stub_template 'users/_game.html.erb' => "User game goes here"
+
+      render
+      expect(rendered).to match "User game goes here"
+    end
+
   end
 end
