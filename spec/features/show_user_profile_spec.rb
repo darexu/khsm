@@ -4,6 +4,7 @@ require 'rails_helper'
 RSpec.feature "A user is looking at another user's profile", type: :feature do
 
   let(:user) {  FactoryBot.create :user, name: 'Юра' }
+  let(:anonymous_user) {  FactoryBot.create :user, name: 'Влад' }
 
   let!(:games) do
     [
@@ -20,12 +21,15 @@ RSpec.feature "A user is looking at another user's profile", type: :feature do
 
   end
 
+  before(:each) do
+    login_as anonymous_user
+  end
+
   scenario 'successfully' do
     visit '/'
 
     click_link 'Юра'
 
-    expect(page).to have_current_path '/users/1'
     expect(page).not_to have_content('Сменить имя и пароль')
 
     expect(page).to have_content('1')
