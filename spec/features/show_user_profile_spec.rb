@@ -4,7 +4,7 @@ require 'rails_helper'
 RSpec.feature "A user is looking at another user's profile", type: :feature do
 
   let(:user) {  FactoryBot.create :user, name: 'Юра' }
-  let(:anonymous_user) {  FactoryBot.create :user, name: 'Влад' }
+  let(:another_user) {  FactoryBot.create :user, name: 'Влад' }
 
   let!(:games) do
     [
@@ -18,11 +18,10 @@ RSpec.feature "A user is looking at another user's profile", type: :feature do
                         finished_at: '2020.10.03, 10:10', current_level: 1, is_failed: true,
                         prize: 0)
     ]
-
   end
 
   before(:each) do
-    login_as anonymous_user
+    login_as another_user
   end
 
   scenario 'successfully' do
