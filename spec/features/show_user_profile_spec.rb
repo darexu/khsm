@@ -31,17 +31,14 @@ RSpec.feature "A user is looking at another user's profile", type: :feature do
 
     expect(page).not_to have_content('Сменить имя и пароль')
 
-    expect(page).to have_content('1')
     expect(page).to have_content('проигрыш')
     expect(page).to have_content('06 окт., 10:00')
     expect(page).to have_content('27 000 ₽')
 
-    expect(page).to have_content('2')
     expect(page).to have_content('проигрыш')
     expect(page).to have_content('03 окт., 12:00')
     expect(page).to have_content('0 ₽')
 
-    expect(page).to have_content('3')
     expect(page).to have_content('победа')
     expect(page).to have_content('02 окт., 10:00')
     expect(page).to have_content('16')
