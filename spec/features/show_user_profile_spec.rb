@@ -31,18 +31,10 @@ RSpec.feature "A user is looking at another user's profile", type: :feature do
 
     expect(page).not_to have_content('Сменить имя и пароль')
 
-    expect(page).to have_content('проигрыш')
-    expect(page).to have_content('06 окт., 10:00')
-    expect(page).to have_content('27 000 ₽')
+    expect(page).to have_content('1 проигрыш 06 окт., 10:00 2 27 000 ₽')
+    expect(page).to have_content('3 проигрыш 03 окт., 12:00 1 0 ₽')
+    expect(page).to have_content('2 победа 02 окт., 10:00 16 1 000 000 ₽')
 
-    expect(page).to have_content('проигрыш')
-    expect(page).to have_content('03 окт., 12:00')
-    expect(page).to have_content('0 ₽')
-
-    expect(page).to have_content('победа')
-    expect(page).to have_content('02 окт., 10:00')
-    expect(page).to have_content('16')
-    expect(page).to have_content('1 000 000 ₽')
     # В процессе работы можно использовать
     # save_and_open_page
     # но в конечном коде (который вы кладете в репозиторий)
